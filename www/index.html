@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Taxi Purwokerto</title>
+  <title>Radio Gedhe</title>
   <meta name="viewport" content="initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -28,24 +28,23 @@
 <div data-role="page" id="panggil">
 
   <div data-role="header" data-position="fixed" data-tap-toggle="false"><!-- /header -->
-    <a href="https://twitter.com/prianthon" data-role="button" data-icon="grid">follow</a>
-    <h1>Taxi Purwokerto</h1>
+    <a href="https://twitter.com/gedhefoundation" data-role="button" data-icon="grid">ikuti</a>
+    <h1>Radio Online</h1>
   </div><!-- /header -->
 
   <div data-role="content">
 
       <!--<h2>.</h2>-->
-      <img class="img-responsive" src="jqm/images/sampig.png" alt="taxi cepat" align="middle">
-      <p><strong>Selamat datang</strong> di Purwokerto, ini adalah aplikasi panggil taxi yang dilengkapi dengan peta lokasi pangakalan.</p>
+      <div align="center">
+      <img class="img-responsive" src="jqm/images/gedhe.png" alt="logo gedhe" align="middle">
+      </div><br/>
+      <p><strong>Selamat mendengarkan,</strong><br/>Radio Online Gedhe Foundation.</p>
 
-    <div data-role="collapsible" data-collapsed="true" data-theme="a">
-      <h3>Kobata</h3>
-      <p><a href="tel:+62281642440" data-role="button">Panggil</a></p>
-    </div><!-- /collapsible -->
-    <div data-role="collapsible" data-collapsed="true" data-theme="a">
-      <h3>Satria Mas</h3>
-      <p><a href="tel:+622817668400" data-role="button">Panggil</a></p>
-    </div><!-- /collapsible -->
+
+    <div>
+      <p><a href="#" data-role="button" onclick="startAudio('http://107.161.162.171:8000/');">Mainkan</a></p>
+      <p><a href="#" data-role="button" onclick="stopAudio();">Hentikan</a></p>
+    </div><!-- /collapsible --><!-- /collapsible -->
     <!--<div class="app">
     <div id="deviceready" class="blink">
         <p class="event listening">Connecting to Device</p>
@@ -57,9 +56,9 @@
   <div data-role="footer" data-position="fixed" data-tap-toggle="false">
     <div data-role="navbar">
       <ul>
-        <li><a href="#panggil" data-transition="flip" data-prefetch data-icon="star" class="ui-btn-active ui-state-persist">Panggil</a></li>
-        <li><a href="#pangkalan" data-transition="flip" data-prefetch data-icon="search">Pangkalan</a></li>
-        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info">Kode</a></li>
+        <li><a href="#panggil" data-transition="flip" data-prefetch data-icon="star" class="ui-btn-active ui-state-persist">Radio</a></li>
+        <li><a href="#pangkalan" data-transition="flip" data-prefetch data-icon="search">Studio</a></li>
+        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info">Kami</a></li>
       </ul>
     </div>
   </div>
@@ -70,12 +69,12 @@
 
   <div data-role="header" data-position="fixed" data-tap-toggle="false"><!-- /header -->
     <!--<a href="https://twitter.com/prianthon" data-role="button" data-icon="grid">follow</a>-->
-    <h1>Taxi Purwokerto</h1>
+    <h1>Radio Online</h1>
   </div><!-- /header -->
 
   <div data-role="content">
 
-      <h2>Sebaran Pangkalan Taxi</h2>
+      <h2>Studio Gedhe Foundation</h2><br/>
       <iframe width='100%' height='400px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/prianthon.p3dn8oe0/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoicHJpYW50aG9uIiwiYSI6ImNpa2NhdTVuZzBseWh1eW00cjJsdXAzcjAifQ.lBlAT-D3arOkpvYwmgSMdg'></iframe>
 
   </div><!-- /content -->
@@ -83,9 +82,9 @@
   <div data-role="footer" data-position="fixed" data-tap-toggle="false">
     <div data-role="navbar">
       <ul>
-        <li><a href="#panggil" data-transition="flip" data-prefetch data-icon="star">Panggil</a></li>
-        <li><a href="#pangkalan" data-transition="flip" data-prefetch data-icon="search" class="ui-btn-active ui-state-persist">Pangkalan</a></li>
-        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info">Kode</a></li>
+        <li><a href="#panggil" data-transition="flip" data-prefetch data-icon="star">Radio</a></li>
+        <li><a href="#pangkalan" data-transition="flip" data-prefetch data-icon="search" class="ui-btn-active ui-state-persist">Studio</a></li>
+        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info">Kami</a></li>
       </ul>
     </div>
   </div>
@@ -95,8 +94,8 @@
 <div data-role="page" id="kode">
 
   <div data-role="header" data-position="fixed" data-tap-toggle="false"><!-- /header -->
-    <a href="#panggil" data-role="button" data-transition="flip" data-icon="star">panggil</a>
-    <h1>Taxi Purwokerto</h1>
+    <a href="#panggil" data-role="button" data-transition="flip" data-icon="star">radio</a>
+    <h1>Radio Online</h1>
   </div><!-- /header -->
 
   <div data-role="content">
@@ -113,7 +112,7 @@
   <div data-role="footer" data-position="fixed" data-tap-toggle="false">
     <div data-role="navbar">
       <ul>
-        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info" class="ui-btn-active ui-state-persist">Kode</a></li>
+        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info" class="ui-btn-active ui-state-persist">Kami</a></li>
       </ul>
     </div>
   </div>
