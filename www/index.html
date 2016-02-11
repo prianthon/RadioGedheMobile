@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Taxi Purwokerto</title>
+  <meta name="viewport" content="initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <!--bawaan-->
+  <meta charset="utf-8" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!--bawaan-->
+  <!--graphite tema-->
+  <link rel="stylesheet" href="jqm/jquery.mobile-1.3.1.css" />
+  <script src="jqm/jquery-1.9.1.min.js"></script>
+  <script src="jqm/jquery.mobile-1.3.1.min.js"></script>
+  <!--graphite tema-->
+  <!--bs-->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!--bs-->
+</head>
+<body>
+<!--hal panggil-->
+<div data-role="page" id="panggil">
+
+  <div data-role="header" data-position="fixed" data-tap-toggle="false"><!-- /header -->
+    <a href="https://twitter.com/prianthon" data-role="button" data-icon="grid">follow</a>
+    <h1>Taxi Purwokerto</h1>
+  </div><!-- /header -->
+
+  <div data-role="content">
+
+      <!--<h2>.</h2>-->
+      <img class="img-responsive" src="jqm/images/sampig.png" alt="taxi cepat" align="middle">
+      <p><strong>Selamat datang</strong> di Purwokerto, ini adalah aplikasi panggil taxi yang dilengkapi dengan peta lokasi pangakalan.</p>
+
+    <div data-role="collapsible" data-collapsed="true" data-theme="a">
+      <h3>Kobata</h3>
+      <p><a href="tel:+62281642440" data-role="button">Panggil</a></p>
+    </div><!-- /collapsible -->
+    <div data-role="collapsible" data-collapsed="true" data-theme="a">
+      <h3>Satria Mas</h3>
+      <p><a href="tel:+622817668400" data-role="button">Panggil</a></p>
+    </div><!-- /collapsible -->
+    <!--<div class="app">
+    <div id="deviceready" class="blink">
+        <p class="event listening">Connecting to Device</p>
+        <p class="event received">Device is Ready</p>
+    </div>
+  </div>-->
+  </div><!-- /content -->
+
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#panggil" data-transition="flip" data-prefetch data-icon="star" class="ui-btn-active ui-state-persist">Panggil</a></li>
+        <li><a href="#pangkalan" data-transition="flip" data-prefetch data-icon="search">Pangkalan</a></li>
+        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info">Kode</a></li>
+      </ul>
+    </div>
+  </div>
+</div><!-- /page -->
+<!--hal panggil-->
+<!--hal pangkalan-->
+<div data-role="page" id="pangkalan">
+
+  <div data-role="header" data-position="fixed" data-tap-toggle="false"><!-- /header -->
+    <!--<a href="https://twitter.com/prianthon" data-role="button" data-icon="grid">follow</a>-->
+    <h1>Taxi Purwokerto</h1>
+  </div><!-- /header -->
+
+  <div data-role="content">
+
+      <h2>Sebaran Pangkalan Taxi</h2>
+      <iframe width='100%' height='400px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/prianthon.p3dn8oe0/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoicHJpYW50aG9uIiwiYSI6ImNpa2NhdTVuZzBseWh1eW00cjJsdXAzcjAifQ.lBlAT-D3arOkpvYwmgSMdg'></iframe>
+
+  </div><!-- /content -->
+
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#panggil" data-transition="flip" data-prefetch data-icon="star">Panggil</a></li>
+        <li><a href="#pangkalan" data-transition="flip" data-prefetch data-icon="search" class="ui-btn-active ui-state-persist">Pangkalan</a></li>
+        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info">Kode</a></li>
+      </ul>
+    </div>
+  </div>
+</div><!-- /page -->
+<!--hal pangkalan-->
+<!--hal kode-->
+<div data-role="page" id="kode">
+
+  <div data-role="header" data-position="fixed" data-tap-toggle="false"><!-- /header -->
+    <a href="#panggil" data-role="button" data-transition="flip" data-icon="star">panggil</a>
+    <h1>Taxi Purwokerto</h1>
+  </div><!-- /header -->
+
+  <div data-role="content">
+
+      <h2>Saran :</h2>
+      <a href="mailto:prianthonsubardio@gmail.com?Subject=TaxiPurwokerto%20repository" data-role="button"><span class="fa fa-envelope fa-fw contact-icon"></span> info@prianthon.web.id</a>
+      <a href="https://www.linkedin.com/in/prianthon" data-role="button"><span class="fa fa-linkedin fa-fw contact-icon"></span> id.linkedin.com/in/prianthon</a>
+      <a href="https://www.facebook.com/prianthon" data-role="button"><span class="fa fa-facebook fa-fw contact-icon"></span> fb.com/prianthon</a>
+      <a href="https://twitter.com/prianthon" data-role="button"><span class="fa fa-twitter fa-fw contact-icon"></span> twitter.com/prianthon</a>
+      <a href="https://plus.google.com/+PriAntonSubardio1945" data-role="button"><span class="fa fa-google-plus fa-fw contact-icon"></span> +PriAntonSubardio1945</a>
+
+  </div><!-- /content -->
+
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info" class="ui-btn-active ui-state-persist">Kode</a></li>
+      </ul>
+    </div>
+  </div>
+</div><!-- /page -->
+<!--hal kode-->
+
+<script type="text/javascript" src="cordova.js"></script>
+<!--<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+    app.initialize();
+</script>-->
+
+</body>
+</html>
