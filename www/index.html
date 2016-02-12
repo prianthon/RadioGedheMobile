@@ -22,6 +22,99 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
   <!--bs-->
+  <script type="text/javascript">
+  //Wait for Cordova to load
+  //
+  document.addEventListener("deviceready", onDeviceReady, false);
+  // Cordova is ready
+  //
+  function onDeviceReady() {
+      console.log('ready');
+  };
+
+  var myMedia = null;
+  var mediaTimer = null;
+  var mediaState = 0;
+  function updateMedia(radioUrl) {
+    if(myMedia != null) {
+      myMedia.release();
+    }
+    // document.getElementById('audio_title').innerHTML = radioUrl;
+    myMedia = new Media(radioUrl,
+        function() { // success callback
+          console.log("Media instance success.");
+        },
+        function() { // error callback
+          console.log("Media error");
+        },
+        function(status) {
+          ///console.log("status: "+status);
+          mediaState = status;
+          if(status == Media.MEDIA_NONE) {
+            console.log("MEDIA_NONE");
+          } else if(status == Media.MEDIA_STARTING) {
+            console.log("MEDIA_STARTING");
+            $.mobile.loading( 'show', {
+              text: 'buffering..',
+              textVisible: true,
+              theme: 'a',
+              textonly: false,
+              html: ''
+          });
+    // document.getElementById('audio_position').innerHTML = 'buffering';
+            $('#play .ui-btn-text').text("P A U S E");
+          } else if(status == Media.MEDIA_RUNNING) {
+            console.log("MEDIA_RUNNING");
+            $.mobile.loading( 'hide' );
+            $('#play .ui-btn-text').text("P A U S E");
+          } else if(status == Media.MEDIA_PAUSED) {
+            console.log("MEDIA_PAUSED");
+            $('#play .ui-btn-text').text("STREAM");
+          } else if(status == Media.MEDIA_STOPPED) {
+            console.log("MEDIA_STOPPED");
+    // document.getElementById('audio_position').innerHTML = '<3';
+            $('#play .ui-btn-text').text("STREAM");
+          } else {
+            console.log("MEDIA_UNKNOWN");
+          }
+        });
+      };
+      function playAudio() {
+      if(mediaState != Media.MEDIA_STARTING && mediaState != Media.MEDIA_RUNNING) {
+      myMedia.play();
+      // Update myMedia position every second
+          if (mediaTimer == null) {
+              mediaTimer = setInterval(function() {
+                  // get myMedia position
+                  myMedia.getCurrentPosition(
+                      // success callback
+                      function(position) {
+                          if (mediaState == 2 && position > -1) {
+//                            	document.getElementById('audio_position').innerHTML = position + '/' + myMedia.getDuration() + ' secs.';
+                          }
+                      },
+                      // error callback
+                      function(e) {
+                        console.log("Error getting pos=" + e);
+//                      	document.getElementById('audio_position').innerHTML = "Error: " + e;
+                      }
+                  );
+              }, 1000);
+          }
+      } else {
+      myMedia.pause();
+      }
+  };
+  function stopAudio() {
+    myMedia.stop();
+    clearInterval(mediaTimer);
+    mediaTimer = null;
+  };
+  function startAudio(streamingUrl) {
+  updateMedia(streamingUrl);
+  playAudio();
+  };
+  </script>
 </head>
 <body>
 <!--hal panggil-->
