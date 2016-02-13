@@ -138,6 +138,15 @@
 		var radioanakM = L.marker([-7.801411, 110.367538]).addTo(map);
 		radioanakM.bindPopup("<b>Radio Anak Jogja</b><br/>99.9 FM.");
 	};
+  function playStream() {
+    try {
+      var myaudio = new Audio('http://107.161.162.171:8000');
+      myaudio.id = 'playerMyAdio';
+      myaudio.play();
+    } catch (e) {
+      alert('no audio support!');
+    }
+  }
   </script>
 </head>
 <body>
@@ -153,6 +162,7 @@
     <h1>Radio Gedhe</h1>
     </div>
     <a href="#" data-role="button" onclick="startAudio('http://107.161.162.171:8000');">mainkan</a>
+    <button onclick="playStream()">Listen Live</button>
 		<a href="#" data-role="button" onclick="stopAudio();">berhenti</a>
 	</div><!-- /content -->
 	<div data-role="footer" data-position="fixed">
