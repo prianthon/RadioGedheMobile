@@ -109,79 +109,16 @@
 		updateMedia(streamingUrl);
 		playAudio();
   };
-	function showRadioMap() {
-		// swaragama: -7.775019, 110.375551
-		var map = L.map('map').setView([-7.781019, 110.373551], 13);
-		// add an OpenStreetMap tile layer
-		//L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-		//	maxZoom: 18
-		//	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-		//}).addTo(map);
-		L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpeg',
-		{
-			attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-			subdomains: '1234',
-			maxZoom: 18
-		}).addTo(map);
-		var swaragamaM = L.marker([-7.775019, 110.375551]).addTo(map);
-		swaragamaM.bindPopup("<b>Swaragama</b><br/>101.7 FM.").openPopup();
-		var iradioM = L.marker([-7.798080, 110.381519]).addTo(map);
-		iradioM.bindPopup("<b>i-Radio Jogja</b><br/>88.7 FM.");
-		var geronimoM  = L.marker([-7.780566, 110.374950]).addTo(map);
-		geronimoM.bindPopup("<b>Geronimo</b><br/>106.1 FM.");
-		var pramborsM = L.marker([-7.797132, 110.357076]).addTo(map);
-		pramborsM.bindPopup("<b>Prambors</b><br/>95.8 FM.");
-		var unisiM = L.marker([-7.777269, 110.393057]).addTo(map);
-		unisiM.bindPopup("<b>Unisi</b><br/>104.5 FM.");
-		var retjobuntungM = L.marker([-7.799271, 110.370889]).addTo(map);
-		retjobuntungM.bindPopup("<b>Retjo Buntung</b><br/>99.4 FM.");
-		var radioanakM = L.marker([-7.801411, 110.367538]).addTo(map);
-		radioanakM.bindPopup("<b>Radio Anak Jogja</b><br/>99.9 FM.");
-	};
-  function playStream() {
-    try {
-      var myaudio = new Audio('http://107.161.162.171:8000');
-      myaudio.id = 'playerMyAdio';
-      myaudio.play();
-    } catch (e) {
-      alert('no audio support!');
-    }
-  };
-  var videoUrl = STREAMING_VIDEO_URL;
-
-  // Just play a video
-  window.plugins.streamingMedia.playVideo(videoUrl);
-
-  // Play a video with callbacks
-  var options = {
-    successCallback: function() {
-      console.log("Video was closed without error.");
-    },
-    errorCallback: function(errMsg) {
-      console.log("Error! " + errMsg);
-    }
-  };
-  window.plugins.streamingMedia.playVideo(videoUrl, options);
-
-
-  var audioUrl = STREAMING_AUDIO_URL;
-
-  // Play an audio file (not recommended, since the screen will be plain black)
-  window.plugins.streamingMedia.playAudio(audioUrl);
-
-  // Play an audio file with options (all options optional)
-  var options = {
-    bgColor: "#FFFFFF",
-    bgImage: "<SWEET_BACKGROUND_IMAGE>",
-    bgImageScale: "fit",
-    successCallback: function() {
-      console.log("Player closed without error.");
-    },
-    errorCallback: function(errMsg) {
-      console.log("Error! " + errMsg);
-    }
-  };
-  window.plugins.streamingMedia.playAudio(audioUrl, options);
+  my_stream = new Stream("http://107.161.162.171:8000", onSuccess, onError);
+// Play audio
+my_media.play();
+function onSuccess() {
+    console.log("playAudio():Audio Success");
+}
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+    'message: ' + error.message + '\n');
+}
   </script>
 </head>
 <body>
@@ -197,8 +134,6 @@
     <h1>Radio Gedhe</h1>
     </div>
     <a href="#" data-role="button" onclick="startAudio('http://107.161.162.171:8000');">mainkan</a>
-    <audio width="300" height="32" controls="controls" autoplay="autoplay" src="http://insertyourstreamhere.com:0000/;"></audio>
-    <button onclick="playStream()">Listen Live</button>
 		<a href="#" data-role="button" onclick="stopAudio();">berhenti</a>
 	</div><!-- /content -->
 	<div data-role="footer" data-position="fixed">
