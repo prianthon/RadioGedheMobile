@@ -5,86 +5,75 @@
   <meta name="viewport" content="initial-scale=1.0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <!--bawaan-->
-  <!--<meta charset="utf-8" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="msapplication-tap-highlight" content="no" />-->
-  <!--bawaan-->
-  <!--graphite tema-->
-  <link rel="stylesheet" href="jqm/jquery.mobile-1.3.1.css" />
-  <script src="jqm/jquery-1.9.1.min.js"></script>
-  <script src="jqm/jquery.mobile-1.3.1.min.js"></script>
-  <!--graphite tema-->
-  <!--bs-->
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
+  <link rel="stylesheet" href="css/jquery.mobile-1.2.0.css" />
+  <link rel="stylesheet" href="css/jquery.mobile-1.2.0.css" />
+  <link rel="stylesheet" href="css/leaflet.css" />
+  <script src="js/jquery-1.8.2.min.js"></script>
+  <script src="js/jquery.mobile-1.2.0.min.js"></script>
   <script type="text/javascript" src="cordova.js"></script>
-
-  <!--bs-->
+  <script type="text/javascript" src="js/leaflet.js"></script>
   <script type="text/javascript">
   //Wait for Cordova to load
   //
   document.addEventListener("deviceready", onDeviceReady, false);
+
   // Cordova is ready
   //
   function onDeviceReady() {
-      console.log('ready');
+	    console.log('ready');
   };
 
   var myMedia = null;
   var mediaTimer = null;
   var mediaState = 0;
   function updateMedia(radioUrl) {
-    if(myMedia != null) {
-      myMedia.release();
-    }
-    // document.getElementById('audio_title').innerHTML = radioUrl;
-    myMedia = new Media(radioUrl,
-        function() { // success callback
-          console.log("Media instance success.");
-        },
-        function() { // error callback
-          console.log("Media error");
-        },
-        function(status) {
-          ///console.log("status: "+status);
-          mediaState = status;
-          if(status == Media.MEDIA_NONE) {
-            console.log("MEDIA_NONE");
-          } else if(status == Media.MEDIA_STARTING) {
-            console.log("MEDIA_STARTING");
-            $.mobile.loading( 'show', {
-              text: 'buffering..',
-              textVisible: true,
-              theme: 'a',
-              textonly: false,
-              html: ''
-          });
-    // document.getElementById('audio_position').innerHTML = 'buffering';
-            $('#play .ui-btn-text').text("P A U S E");
-          } else if(status == Media.MEDIA_RUNNING) {
-            console.log("MEDIA_RUNNING");
-            $.mobile.loading( 'hide' );
-            $('#play .ui-btn-text').text("P A U S E");
-          } else if(status == Media.MEDIA_PAUSED) {
-            console.log("MEDIA_PAUSED");
-            $('#play .ui-btn-text').text("STREAM");
-          } else if(status == Media.MEDIA_STOPPED) {
-            console.log("MEDIA_STOPPED");
-    // document.getElementById('audio_position').innerHTML = '<3';
-            $('#play .ui-btn-text').text("STREAM");
-          } else {
-            console.log("MEDIA_UNKNOWN");
-          }
-        });
-      };
-      function playAudio() {
-      if(mediaState != Media.MEDIA_STARTING && mediaState != Media.MEDIA_RUNNING) {
-      myMedia.play();
-      // Update myMedia position every second
+  	if(myMedia != null) {
+  		myMedia.release();
+  	}
+//     	document.getElementById('audio_title').innerHTML = radioUrl;
+  	myMedia = new Media(radioUrl,
+  				function() { // success callback
+  					console.log("Media instance success.");
+  				},
+  				function() { // error callback
+  					console.log("Media error");
+  				},
+  				function(status) {
+  					///console.log("status: "+status);
+  					mediaState = status;
+  					if(status == Media.MEDIA_NONE) {
+  						console.log("MEDIA_NONE");
+  					} else if(status == Media.MEDIA_STARTING) {
+  						console.log("MEDIA_STARTING");
+  						$.mobile.loading( 'show', {
+  							text: 'buffering..',
+  							textVisible: true,
+  							theme: 'a',
+  							textonly: false,
+  							html: ''
+  					});
+//  				       	document.getElementById('audio_position').innerHTML = 'buffering';
+  						$('#play .ui-btn-text').text("P A U S E");
+  					} else if(status == Media.MEDIA_RUNNING) {
+  						console.log("MEDIA_RUNNING");
+  						$.mobile.loading( 'hide' );
+  						$('#play .ui-btn-text').text("P A U S E");
+  					} else if(status == Media.MEDIA_PAUSED) {
+  						console.log("MEDIA_PAUSED");
+  						$('#play .ui-btn-text').text("STREAM");
+  					} else if(status == Media.MEDIA_STOPPED) {
+  						console.log("MEDIA_STOPPED");
+//  				       	document.getElementById('audio_position').innerHTML = '<3';
+  						$('#play .ui-btn-text').text("STREAM");
+  					} else {
+  						console.log("MEDIA_UNKNOWN");
+  					}
+  				});
+  };
+  function playAudio() {
+  	if(mediaState != Media.MEDIA_STARTING && mediaState != Media.MEDIA_RUNNING) {
+  		myMedia.play();
+  		// Update myMedia position every second
           if (mediaTimer == null) {
               mediaTimer = setInterval(function() {
                   // get myMedia position
@@ -92,135 +81,78 @@
                       // success callback
                       function(position) {
                           if (mediaState == 2 && position > -1) {
-//                            	document.getElementById('audio_position').innerHTML = position + '/' + myMedia.getDuration() + ' secs.';
+//                          	document.getElementById('audio_position').innerHTML = position + '/' + myMedia.getDuration() + ' secs.';
                           }
                       },
                       // error callback
                       function(e) {
-                        console.log("Error getting pos=" + e);
+                          console.log("Error getting pos=" + e);
 //                      	document.getElementById('audio_position').innerHTML = "Error: " + e;
                       }
                   );
               }, 1000);
           }
-      } else {
-      myMedia.pause();
-      }
+  	} else {
+  		myMedia.pause();
+  	}
   };
   function stopAudio() {
-    myMedia.stop();
-    clearInterval(mediaTimer);
-    mediaTimer = null;
+  	myMedia.stop();
+  	clearInterval(mediaTimer);
+  	mediaTimer = null;
   };
   function startAudio(streamingUrl) {
-  updateMedia(streamingUrl);
-  playAudio();
+		updateMedia(streamingUrl);
+		playAudio();
   };
   </script>
 </head>
 <body>
-<!--hal panggil-->
-<div data-role="page" id="panggil">
 
-  <div data-role="header" data-position="fixed" data-tap-toggle="false"><!-- /header -->
-    <a href="https://twitter.com/gedhefoundation" data-role="button" data-icon="grid">ikuti</a>
-    <h1>Radio Online</h1>
-  </div><!-- /header -->
+<div data-role="page" id="main">
 
-  <div data-role="content">
-
-      <!--<h2>.</h2>-->
-      <div align="center">
-      <img class="img-responsive" src="jqm/images/gedhe.png" alt="logo gedhe" align="middle">
-      </div><br/>
-      <p><strong>Selamat mendengarkan,</strong><br/>Radio Online Gedhe Foundation</p>
-
-
-
-      <a href="#" data-role="button" onclick="startAudio('http://107.161.162.171:8000/');">Mainkan</a>
-      <a href="#" data-role="button" onclick="stopAudio();">Hentikan</a>
-      <button class="ui-btn" data-role="button" onclick="startAudio('http://107.161.162.171:8000/');">PLAY</button>
-      <button class="ui-btn" data-role="button" onclick="stopAudio();">STOP</button>
-
-    <!-- /collapsible --><!-- /collapsible -->
-    <!--<div class="app">
-    <div id="deviceready" class="blink">
-        <p class="event listening">Connecting to Device</p>
-        <p class="event received">Device is Ready</p>
+	<div data-role="header" data-position="fixed">
+		<h1>Gedhe Foundation</h1>
+	</div><!-- /header -->
+	<div data-role="content">
+    <div align="center">
+    <img width="150px" height="150px" class="img-responsive" src="img/rg.png" alt="logo gedhe" align="middle">
+    <h1>Radio Gedhe</h1>
     </div>
-  </div>-->
-  </div><!-- /content -->
+    <a href="#" data-role="button" onclick="startAudio('http://107.161.162.171:8000/');">mainkan</a>
+		<a href="#" data-role="button" onclick="stopAudio();">berhenti</a>
+	</div><!-- /content -->
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#main" data-icon="grid" data-transition="flip" data-prefetch class="ui-btn-active ui-state-persist">Siaran</a></li>
+				<li><a href="#maps" data-icon="home" data-transition="flip" data-prefetch>Studio</a></li>
+			</ul>
+		</div>
+	</div><!-- /footer -->
+</div><!-- /page main -->
 
-  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#panggil" data-transition="flip" data-prefetch data-icon="star" class="ui-btn-active ui-state-persist">Radio</a></li>
-        <li><a href="#pangkalan" data-transition="flip" data-prefetch data-icon="search">Studio</a></li>
-        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info">Kami</a></li>
-      </ul>
-    </div>
-  </div>
-</div><!-- /page -->
-<!--hal panggil-->
-<!--hal pangkalan-->
-<div data-role="page" id="pangkalan">
+<div data-role="page" id="maps">
 
-  <div data-role="header" data-position="fixed" data-tap-toggle="false"><!-- /header -->
-    <!--<a href="https://twitter.com/prianthon" data-role="button" data-icon="grid">follow</a>-->
-    <h1>Radio Online</h1>
-  </div><!-- /header -->
+	<div data-role="header" data-position="fixed">
+		<h1>Gedhe Foundation</h1>
+	</div><!-- /header -->
+	<div data-role="content">
+		<div class="ui-body">
+			<h1>Letak Radio Gedhe</h1>
+			<p>Perum. Geriya Satria Indah Sumampir, jalan opal blok o no.9 purwokerto, Kabupaten Banyumas - Jawa Tengah 53125<br/>Hotline : +62 822 2648 4444<br/>E-mail : kami@gedhe.or.id.</p>
+      <iframe width='100%' height='300px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/prianthon.p51ib7o7/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoicHJpYW50aG9uIiwiYSI6ImNpa2NhdTVuZzBseWh1eW00cjJsdXAzcjAifQ.lBlAT-D3arOkpvYwmgSMdg'></iframe>
+		</div><!-- /themed container -->
+	</div><!-- /content -->
 
-  <div data-role="content">
-
-      <h2>Studio Gedhe Foundation</h2><br/>
-      <iframe width='100%' height='400px' frameBorder='0' src='https://a.tiles.mapbox.com/v4/prianthon.p3dn8oe0/attribution,zoompan,zoomwheel,geocoder,share.html?access_token=pk.eyJ1IjoicHJpYW50aG9uIiwiYSI6ImNpa2NhdTVuZzBseWh1eW00cjJsdXAzcjAifQ.lBlAT-D3arOkpvYwmgSMdg'></iframe>
-
-  </div><!-- /content -->
-
-  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#panggil" data-transition="flip" data-prefetch data-icon="star">Radio</a></li>
-        <li><a href="#pangkalan" data-transition="flip" data-prefetch data-icon="search" class="ui-btn-active ui-state-persist">Studio</a></li>
-        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info">Kami</a></li>
-      </ul>
-    </div>
-  </div>
-</div><!-- /page -->
-<!--hal pangkalan-->
-<!--hal kode-->
-<div data-role="page" id="kode">
-
-  <div data-role="header" data-position="fixed" data-tap-toggle="false"><!-- /header -->
-    <a href="#panggil" data-role="button" data-transition="flip" data-icon="star">radio</a>
-    <h1>Radio Online</h1>
-  </div><!-- /header -->
-
-  <div data-role="content">
-
-      <h2>Saran :</h2>
-      <a href="mailto:prianthonsubardio@gmail.com?Subject=TaxiPurwokerto%20repository" data-role="button"><span class="fa fa-envelope fa-fw contact-icon"></span> info@prianthon.web.id</a>
-      <a href="https://www.linkedin.com/in/prianthon" data-role="button"><span class="fa fa-linkedin fa-fw contact-icon"></span> id.linkedin.com/in/prianthon</a>
-      <a href="https://www.facebook.com/prianthon" data-role="button"><span class="fa fa-facebook fa-fw contact-icon"></span> fb.com/prianthon</a>
-      <a href="https://twitter.com/prianthon" data-role="button"><span class="fa fa-twitter fa-fw contact-icon"></span> twitter.com/prianthon</a>
-      <a href="https://plus.google.com/+PriAntonSubardio1945" data-role="button"><span class="fa fa-google-plus fa-fw contact-icon"></span> +PriAntonSubardio1945</a>
-
-  </div><!-- /content -->
-
-  <div data-role="footer" data-position="fixed" data-tap-toggle="false">
-    <div data-role="navbar">
-      <ul>
-        <li><a href="#kode" data-transition="flip" data-prefetch data-icon="info" class="ui-btn-active ui-state-persist">Kami</a></li>
-      </ul>
-    </div>
-  </div>
-</div><!-- /page -->
-<!--hal kode-->
-
-<!--<script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript">
-    app.initialize();
-</script>-->
-
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#main" data-icon="grid" data-transition="flip" data-prefetch data-direction="reverse">Siaran</a></li>
+				<li><a href="#maps" data-icon="home" data-transition="flip" data-prefetch class="ui-btn-active ui-state-persist">Studio</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!-- /page maps -->
 </body>
 </html>
